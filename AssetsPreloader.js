@@ -7,9 +7,6 @@
  * @repository: https://github.com/BuiltByEdgar/Assets-Preloader
  * @license: MIT License
  *
- *
- *
- *
  **********************************************************************************/
 
 
