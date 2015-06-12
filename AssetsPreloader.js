@@ -4,7 +4,7 @@
  *
  * @author:  Edgar Bermejo - @BuiltByEdgar - http://builtbyedgar.com/
  * @version: 0.0.1 - Beta (11/07/2015)
- * @repository: https://github.com/BuiltByEdgar/AssetsPreloader
+ * @repository: https://github.com/BuiltByEdgar/Assets-Preloader
  * @license: MIT License
  *
  *
@@ -18,7 +18,7 @@
 // CONSTRUCTOR
 function AssetsPreloader ( path ) {
 
-	this.successCount = 0;
+    this.successCount = 0;
     this.errorCount = 0;
     this.cache = {};
     this.downloadQueue = []
@@ -62,8 +62,8 @@ AssetsPreloader.prototype.loadAssets = function ( path ) {
 // On assets loaded
 AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
 
-	if ( this.downloadQueue.length === 0 )
-		callback();
+    if ( this.downloadQueue.length === 0 )
+	callback();
 
     for ( var i = 0; i < this.downloadQueue.length; i++ ) {
 
@@ -75,7 +75,7 @@ AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
         img.addEventListener( 'load', function ( event ) {
 
             that.successCount += 1;
-		    if ( that.isDone() ) callback();
+	    if ( that.isDone() ) callback();
 
         }, false );
 
@@ -83,7 +83,7 @@ AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
         img.addEventListener( 'error', function ( event ) {
 
 	        that.errorCount += 1;
-			if ( that.isDone() ) callback();
+		if ( that.isDone() ) callback();
 
 	    }, false );
 
