@@ -3,7 +3,8 @@ Preload assets in background (only images)
 
 
 ## Usage
-```
+
+```javascript
 var assets = [ 'img001.png', 'img002.png', 'img003.png' ];
 
 var assetsPreloader = new AssetsPreloader();                 // Single initialize
