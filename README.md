@@ -16,7 +16,7 @@ assetsPreloader.load( assets );                              // Load multiple as
 assetsPreloader.onLoad( function ( event ) {                 // On assets loaded event
     console.log('DONE!');
     console.log(assetsPreloader.downloadQueue);
-    var img = assetsPreloader.getAsset( 'img003.png' );      // Get loaded asset
+    var img = assetsPreloader.getAsset( 'img002.png' /*assets[ 1 ]*/ );      // Get loaded asset
     document.body.appendChild( img );   
 });
 ```
