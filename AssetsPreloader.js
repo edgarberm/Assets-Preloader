@@ -10,7 +10,7 @@
  **********************************************************************************/
 
 
-'use script';
+'use strict';
 
 // CONSTRUCTOR
 function AssetsPreloader ( path ) {
