@@ -15,27 +15,22 @@
 // CONSTRUCTOR
 function AssetsPreloader ( path ) {
 
-    this.successCount = 0;
+	this.successCount = 0;
     this.errorCount = 0;
     this.cache = {};
     this.downloadQueue = []
 
-    // Check path
-    if (path != null && path instanceof Array ) {
-        this.downloadQueue = path 
-    } else if ( typeof path === 'string' ) {
-        this.downloadQueue.push( path )  
-    } else {
-        throw new Error( 'The path is wrong!' );
-    }
+    this.handlePath( path );
 
 };
 
 
-// Load single asset
-AssetsPreloader.prototype.loadAsset = function ( path ) {
+// Check path
+AssetsPreloader.prototype.handlePath = function ( path ) {
 
-    if ( typeof path === 'string' ) {
+    if (path != null && path instanceof Array ) {
+        this.downloadQueue = path 
+    } else if ( typeof path === 'string' ) {
         this.downloadQueue.push( path )  
     } else {
         throw new Error( 'The path is wrong!' );
@@ -45,22 +40,18 @@ AssetsPreloader.prototype.loadAsset = function ( path ) {
 
 
 // Load multiple assets
-AssetsPreloader.prototype.loadAssets = function ( path ) {
+AssetsPreloader.prototype.load = function ( path ) {
 
-    if ( path instanceof Array ) {
-        this.downloadQueue = path 
-    } else {
-        throw new Error( 'The path is wrong!' );
-    }
+    this.handlePath( path );
 
 }
 
 
 // On assets loaded
-AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
+AssetsPreloader.prototype.onLoad = function ( callback ) {
 
-    if ( this.downloadQueue.length === 0 )
-	callback();
+   if ( this.downloadQueue.length === 0 )
+   		callback();
 
     for ( var i = 0; i < this.downloadQueue.length; i++ ) {
 
@@ -71,8 +62,8 @@ AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
         // Image load
         img.addEventListener( 'load', function ( event ) {
 
-            that.successCount += 1;
-	    if ( that.isDone() ) callback();
+        	that.successCount += 1;
+			if ( that.isDone() ) callback();
 
         }, false );
 
@@ -80,7 +71,7 @@ AssetsPreloader.prototype.onAssetsLoaded = function ( callback ) {
         img.addEventListener( 'error', function ( event ) {
 
 	        that.errorCount += 1;
-		if ( that.isDone() ) callback();
+			if ( that.isDone() ) callback();
 
 	    }, false );
 
