@@ -33,8 +33,8 @@ class ES6AssetsPreloader {
 
     // On assets loaded
 	onLoad ( callback ) {
-	   if ( this.downloadQueue.length === 0 )
-	   		callback();
+		if ( this.downloadQueue.length === 0 )
+			callback();
 
 	    for ( let i = 0; i < this.downloadQueue.length; i++ ) {
 	        let path = this.downloadQueue[ i ];
@@ -48,11 +48,9 @@ class ES6AssetsPreloader {
 
 	        // Image error
 	        img.addEventListener( 'error', function ( event ) {
-
 		        this.errorCount += 1;
 				if ( this._isDone() ) callback();
-
-		    }.bind( this ), false );
+			}.bind( this ), false );
 
 	        img.src = this.path;
 	        this.cache[ this.path ] = img;
