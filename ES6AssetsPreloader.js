@@ -15,7 +15,6 @@ class ES6AssetsPreloader {
 
     // Check path
     _handlePath ( _path ) {
-        console.log( _path );
         if ( _path != null && _path instanceof Array ) {
 	        this.downloadQueue = _path;
 	    } else if ( typeof _path === 'string' ) {
@@ -34,34 +33,30 @@ class ES6AssetsPreloader {
 
     // On assets loaded
 	onLoad ( callback ) {
-
 	   if ( this.downloadQueue.length === 0 )
 	   		callback();
 
 	    for ( let i = 0; i < this.downloadQueue.length; i++ ) {
 	        let path = this.downloadQueue[ i ];
 	        let img = new Image();
+
 	        // Image load
 	        img.addEventListener( 'load', function ( event ) {
-
 	        	this.successCount += 1;
-				if ( _isDone() ) callback();
-
-	        }, false );
+				if ( this._isDone() ) callback();
+	        }.bind( this ), false );
 
 	        // Image error
 	        img.addEventListener( 'error', function ( event ) {
 
 		        this.errorCount += 1;
-				if ( _isDone() ) callback();
+				if ( this._isDone() ) callback();
 
-		    }, false );
+		    }.bind( this ), false );
 
-	        img.src = ILUSIA_CONFIG.PRODUCT_IMAGE_URL + this.path;
+	        img.src = this.path;
 	        this.cache[ this.path ] = img;
-
 	    }
-
 	}
 
 
